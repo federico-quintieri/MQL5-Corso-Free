@@ -1,5 +1,5 @@
 //+------------------------------------------------------------------+
-//|                                             1.1 Struttura EA.mq5 |
+//|                                               1.6. Esercizio.mq5 |
 //|                                  Copyright 2026, MetaQuotes Ltd. |
 //|                                             https://www.mql5.com |
 //+------------------------------------------------------------------+
@@ -7,11 +7,19 @@
 #property link      "https://www.mql5.com"
 #property version   "1.00"
 
+
+double prezzi[] = {3.4,5.3,6.3,6.2,6.2};
+
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
 int OnInit()
   {
+
+   for(int i = 0; i < ArraySize(prezzi); i++)
+     {
+      Print("Valore array ad indice: ", i, "--",prezzi[i]);
+     }
 
    return(INIT_SUCCEEDED);
   }
@@ -20,6 +28,7 @@ int OnInit()
 //+------------------------------------------------------------------+
 void OnDeinit(const int reason)
   {
+//---
 
   }
 //+------------------------------------------------------------------+
@@ -27,7 +36,8 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
-   double Ask = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
-   Print("Nuovo Tick Arrivato: ",Ask);
+//---
+
   }
 //+------------------------------------------------------------------+
+

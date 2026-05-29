@@ -1,5 +1,5 @@
-//+------------------------------------------------------------------+
-//|                                             1.1 Struttura EA.mq5 |
+﻿//+------------------------------------------------------------------+
+//|                                               2.1. Esercizio.mq5 |
 //|                                  Copyright 2026, MetaQuotes Ltd. |
 //|                                             https://www.mql5.com |
 //+------------------------------------------------------------------+
@@ -13,6 +13,12 @@
 int OnInit()
   {
 
+   double ask = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
+   double bid = SymbolInfoDouble(_Symbol,SYMBOL_BID);
+
+   Print("Ask è: ", ask);
+   Print("Bid è: ", bid);
+
    return(INIT_SUCCEEDED);
   }
 //+------------------------------------------------------------------+
@@ -20,6 +26,7 @@ int OnInit()
 //+------------------------------------------------------------------+
 void OnDeinit(const int reason)
   {
+//---
 
   }
 //+------------------------------------------------------------------+
@@ -27,7 +34,7 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
-   double Ask = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
-   Print("Nuovo Tick Arrivato: ",Ask);
+//---
+
   }
 //+------------------------------------------------------------------+

@@ -1,5 +1,5 @@
 //+------------------------------------------------------------------+
-//|                                             1.1 Struttura EA.mq5 |
+//|                                               2.0. Esercizio.mq5 |
 //|                                  Copyright 2026, MetaQuotes Ltd. |
 //|                                             https://www.mql5.com |
 //+------------------------------------------------------------------+
@@ -7,11 +7,17 @@
 #property link      "https://www.mql5.com"
 #property version   "1.00"
 
+double Close[];
+
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
 int OnInit()
   {
+   CopyClose(_Symbol,PERIOD_CURRENT,0,5,Close);
+   ArraySetAsSeries(Close,true);
+
+   ArrayPrint(Close);
 
    return(INIT_SUCCEEDED);
   }
@@ -20,6 +26,7 @@ int OnInit()
 //+------------------------------------------------------------------+
 void OnDeinit(const int reason)
   {
+//---
 
   }
 //+------------------------------------------------------------------+
@@ -27,7 +34,7 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
-   double Ask = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
-   Print("Nuovo Tick Arrivato: ",Ask);
+//---
+
   }
 //+------------------------------------------------------------------+

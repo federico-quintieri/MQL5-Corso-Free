@@ -1,5 +1,5 @@
 //+------------------------------------------------------------------+
-//|                                             1.1 Struttura EA.mq5 |
+//|                                               2.2. Esercizio.mq5 |
 //|                                  Copyright 2026, MetaQuotes Ltd. |
 //|                                             https://www.mql5.com |
 //+------------------------------------------------------------------+
@@ -7,11 +7,24 @@
 #property link      "https://www.mql5.com"
 #property version   "1.00"
 
+input group "MACD"
+input int fast_ema = 12;
+input int slow_ema = 26;
+input int signal = 9;
+
+int handle;
+double istogramma[];
+
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
 int OnInit()
   {
+
+   handle = iMACD(_Symbol,PERIOD_CURRENT,fast_ema,slow_ema,signal,PRICE_CLOSE);
+   ArraySetAsSeries(istogramma,true);
+
+   ChartIndicatorAdd(ChartID(),1,handle);
 
    return(INIT_SUCCEEDED);
   }
@@ -20,6 +33,10 @@ int OnInit()
 //+------------------------------------------------------------------+
 void OnDeinit(const int reason)
   {
+   IndicatorRelease(handle);
+
+   string macd_name = StringFormat("MACD(%d,%d,%d)",fast_ema,slow_ema,signal);
+   ChartIndicatorDelete(ChartID(),1,macd_name);
 
   }
 //+------------------------------------------------------------------+
@@ -27,7 +44,8 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
-   double Ask = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
-   Print("Nuovo Tick Arrivato: ",Ask);
+
+   int copiati = CopyBuffer(handle,0,0,5,istogramma);
+
   }
 //+------------------------------------------------------------------+

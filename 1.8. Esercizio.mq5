@@ -1,5 +1,5 @@
 //+------------------------------------------------------------------+
-//|                                             1.1 Struttura EA.mq5 |
+//|                                               1.8. Esercizio.mq5 |
 //|                                  Copyright 2026, MetaQuotes Ltd. |
 //|                                             https://www.mql5.com |
 //+------------------------------------------------------------------+
@@ -7,11 +7,37 @@
 #property link      "https://www.mql5.com"
 #property version   "1.00"
 
+// Enumerazione
+enum ENUM_SCELTA_MULTIPLA
+  {
+   medie = 0,
+   rsi = 1,
+   bande = 2,
+  };
+
+input ENUM_SCELTA_MULTIPLA scelta = medie;
+
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
 int OnInit()
   {
+
+   switch(scelta)
+     {
+      case medie:
+         Print("Medie");
+         break;
+      case rsi:
+         Print("RSI");
+         break;
+      case bande:
+         Print("Bande");
+         break;
+      default:
+         Print("Default");
+         break;
+     }
 
    return(INIT_SUCCEEDED);
   }
@@ -20,6 +46,7 @@ int OnInit()
 //+------------------------------------------------------------------+
 void OnDeinit(const int reason)
   {
+//---
 
   }
 //+------------------------------------------------------------------+
@@ -27,7 +54,8 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
-   double Ask = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
-   Print("Nuovo Tick Arrivato: ",Ask);
+//---
+
   }
 //+------------------------------------------------------------------+
+

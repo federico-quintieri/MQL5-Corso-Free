@@ -1,5 +1,5 @@
-//+------------------------------------------------------------------+
-//|                                             1.1 Struttura EA.mq5 |
+﻿//+------------------------------------------------------------------+
+//|                                               1.5. Esercizio.mq5 |
 //|                                  Copyright 2026, MetaQuotes Ltd. |
 //|                                             https://www.mql5.com |
 //+------------------------------------------------------------------+
@@ -7,12 +7,18 @@
 #property link      "https://www.mql5.com"
 #property version   "1.00"
 
+// Array devono contenere dati dello stesso tipo
+int mio_array[50];
+
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
 int OnInit()
   {
-
+//---
+   Print("Cosa c'è al primo posto del mio array: ", mio_array[0]);
+   Print("Quanto è grande il mio array: ", ArraySize(mio_array));
+//---
    return(INIT_SUCCEEDED);
   }
 //+------------------------------------------------------------------+
@@ -20,6 +26,7 @@ int OnInit()
 //+------------------------------------------------------------------+
 void OnDeinit(const int reason)
   {
+//---
 
   }
 //+------------------------------------------------------------------+
@@ -27,7 +34,7 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
-   double Ask = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
-   Print("Nuovo Tick Arrivato: ",Ask);
+//---
+
   }
 //+------------------------------------------------------------------+

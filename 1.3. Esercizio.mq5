@@ -1,5 +1,5 @@
-//+------------------------------------------------------------------+
-//|                                             1.1 Struttura EA.mq5 |
+﻿//+------------------------------------------------------------------+
+//|                                               1.3. Esercizio.mq5 |
 //|                                  Copyright 2026, MetaQuotes Ltd. |
 //|                                             https://www.mql5.com |
 //+------------------------------------------------------------------+
@@ -7,11 +7,20 @@
 #property link      "https://www.mql5.com"
 #property version   "1.00"
 
+// + - * / %
+// > < >= <= ==
+// && || !
+
+input bool variabile_test = false;
+
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
 int OnInit()
   {
+
+   if(variabile_test == false || variabile_test == true)
+      Print("La variabile di input è falsa");
 
    return(INIT_SUCCEEDED);
   }
@@ -27,7 +36,6 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
-   double Ask = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
-   Print("Nuovo Tick Arrivato: ",Ask);
+
   }
 //+------------------------------------------------------------------+

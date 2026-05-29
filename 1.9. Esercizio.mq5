@@ -1,5 +1,5 @@
 //+------------------------------------------------------------------+
-//|                                             1.1 Struttura EA.mq5 |
+//|                                               1.9. Esercizio.mq5 |
 //|                                  Copyright 2026, MetaQuotes Ltd. |
 //|                                             https://www.mql5.com |
 //+------------------------------------------------------------------+
@@ -7,27 +7,38 @@
 #property link      "https://www.mql5.com"
 #property version   "1.00"
 
+
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
 int OnInit()
   {
+   Print("Evento Init Eseguito");
+   Print(AccountInfoString(ACCOUNT_NAME));
+   Print(AccountInfoString(ACCOUNT_COMPANY));
+   Print(AccountInfoString(ACCOUNT_CURRENCY));
+   Print(AccountInfoString(ACCOUNT_SERVER));
 
-   return(INIT_SUCCEEDED);
+   string nome_account = AccountInfoString(ACCOUNT_NAME);
+
+   if(nome_account == "Federico Quintieri")
+      return(INIT_SUCCEEDED);
+   else
+      return(INIT_FAILED);
+
   }
 //+------------------------------------------------------------------+
 //| Expert deinitialization function                                 |
 //+------------------------------------------------------------------+
 void OnDeinit(const int reason)
   {
-
+   Print("Evento Deinit Eseguito");
   }
 //+------------------------------------------------------------------+
 //| Expert tick function                                             |
 //+------------------------------------------------------------------+
 void OnTick()
   {
-   double Ask = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
-   Print("Nuovo Tick Arrivato: ",Ask);
+//Print("Evento Tick Eseguito");
   }
 //+------------------------------------------------------------------+
