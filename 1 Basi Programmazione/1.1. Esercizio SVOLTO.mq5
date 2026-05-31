@@ -12,7 +12,7 @@
 //+------------------------------------------------------------------+
 int OnInit()
   {
-
+// 1.
    Print("EA avviato correttamente");
 
    return(INIT_SUCCEEDED);
@@ -22,7 +22,7 @@ int OnInit()
 //+------------------------------------------------------------------+
 void OnDeinit(const int reason)
   {
-
+// 2.
    Print("EA spento");
 
   }
@@ -31,6 +31,9 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
+
+//3.
+
    double Ask = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
    double Bid = SymbolInfoDouble(_Symbol,SYMBOL_BID);
 

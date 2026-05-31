@@ -1,5 +1,5 @@
-﻿//+------------------------------------------------------------------+
-//|                                               1.3. Esercizio.mq5 |
+//+------------------------------------------------------------------+
+//|                                               2.8. Esercizio.mq5 |
 //|                                  Copyright 2026, MetaQuotes Ltd. |
 //|                                             https://www.mql5.com |
 //+------------------------------------------------------------------+
@@ -7,57 +7,22 @@
 #property link      "https://www.mql5.com"
 #property version   "1.00"
 
-// + - * / %
-// > < >= <= ==
-// && || !
+MqlDateTime tempo;
 
-input bool variabile_test = false;
-
-
-// 1.
-int numero1 = 10;
-int numero2 = 5;
+#include <FQInfo\Info.mqh>
+CInfo info;
 
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
 int OnInit()
   {
-// 2. e 3.
+   TimeToStruct(TimeLocal(),tempo);
 
-// Somma
-   Print("Somma: ", numero1+numero2);
-
-// Sottrazione
-   Print("Sottrazione: ", numero1-numero2);
-
-// Moltiplicazione
-   Print("Moltiplicazione: ", numero1*numero2);
-
-// Divisione
-   Print("Divisione: ", numero1/numero2);
-
-// Resto della divisione
-   Print("Resto: ", numero1%numero2);
-
-// 4.
-   if(numero1 > numero2)
+   if(tempo.hour > 11)
      {
-      Print("Numero1 è maggiore a numero2");
+      Print("Sono passate le 11 di mattina");
      }
-
-// 5.
-   if(numero1 > numero2 && variabile_test == true)
-     {
-      Print("Condizione verificata");
-     }
-   else
-     {
-      Print("Condizione falsa");
-     }
-
-   if(variabile_test == false || variabile_test == true)
-      Print("La variabile di input è falsa");
 
    return(INIT_SUCCEEDED);
   }
@@ -66,6 +31,7 @@ int OnInit()
 //+------------------------------------------------------------------+
 void OnDeinit(const int reason)
   {
+//---
 
   }
 //+------------------------------------------------------------------+
@@ -73,6 +39,7 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
+//---
 
   }
 //+------------------------------------------------------------------+

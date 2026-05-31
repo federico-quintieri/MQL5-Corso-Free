@@ -1,5 +1,5 @@
-﻿//+------------------------------------------------------------------+
-//|                                               1.3. Esercizio.mq5 |
+//+------------------------------------------------------------------+
+//|                                               2.3. Esercizio.mq5 |
 //|                                  Copyright 2026, MetaQuotes Ltd. |
 //|                                             https://www.mql5.com |
 //+------------------------------------------------------------------+
@@ -7,57 +7,26 @@
 #property link      "https://www.mql5.com"
 #property version   "1.00"
 
-// + - * / %
-// > < >= <= ==
-// && || !
+// Ordine - Deal - Posizione
 
-input bool variabile_test = false;
+// 1. Importare una libreria
+#include <Trade\Trade.mqh>
 
+// 2. Variabile oggetto che mi permette di utilizzare funzioni della libreria
+CTrade trade;
 
-// 1.
-int numero1 = 10;
-int numero2 = 5;
+input int MagicNumber = 321;
+
+int BarsCount = 0;
 
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
 int OnInit()
   {
-// 2. e 3.
+// 3. Setto il magic number
+   trade.SetExpertMagicNumber(MagicNumber);
 
-// Somma
-   Print("Somma: ", numero1+numero2);
-
-// Sottrazione
-   Print("Sottrazione: ", numero1-numero2);
-
-// Moltiplicazione
-   Print("Moltiplicazione: ", numero1*numero2);
-
-// Divisione
-   Print("Divisione: ", numero1/numero2);
-
-// Resto della divisione
-   Print("Resto: ", numero1%numero2);
-
-// 4.
-   if(numero1 > numero2)
-     {
-      Print("Numero1 è maggiore a numero2");
-     }
-
-// 5.
-   if(numero1 > numero2 && variabile_test == true)
-     {
-      Print("Condizione verificata");
-     }
-   else
-     {
-      Print("Condizione falsa");
-     }
-
-   if(variabile_test == false || variabile_test == true)
-      Print("La variabile di input è falsa");
 
    return(INIT_SUCCEEDED);
   }
@@ -74,5 +43,14 @@ void OnDeinit(const int reason)
 void OnTick()
   {
 
+   if(Bars(_Symbol,PERIOD_CURRENT) > BarsCount)
+     {
+      double bid = SymbolInfoDouble(_Symbol,SYMBOL_BID);
+      double ask = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
+
+      trade.Buy(0.1,_Symbol,ask,bid - 500 * _Point, bid + 300 * _Point,"IL mio ea apre un buy");
+
+      BarsCount = Bars(_Symbol,PERIOD_CURRENT);
+     }
   }
 //+------------------------------------------------------------------+

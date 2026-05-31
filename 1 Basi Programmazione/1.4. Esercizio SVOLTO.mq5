@@ -20,14 +20,15 @@ int OnInit()
   {
 
    double Ask = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
-   
+// 4.
    Print("Lotti: ", Lotti, " | Ask: ",Ask);
 
-// Se Lotti è maggiore a 0.1 apro un buy altrimenti non apro niente
+// 1. e 3.
    if(Lotti >= 0.1 && Ask > 1.00000 && Lotti <= 1)
      {
       trade.Buy(Lotti,_Symbol,Ask,NULL,NULL,"Apro BUY");
      }
+// 2.
    else
      {
       Print("Condizioni non valide, nessun ordine aperto");

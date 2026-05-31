@@ -17,7 +17,10 @@ double numero_virgola = 1.3;
 bool   booleano = true;
 string parola = "Ciao";
 
+// 1.
 double saldo = 1000.50;
+
+// 2.
 string nome_utente = "Mario";
 
 
@@ -26,11 +29,16 @@ string nome_utente = "Mario";
 //+------------------------------------------------------------------+
 int OnInit()
   {
+
+// 3.
    Print("Saldo: ", saldo);
    Print("Nome utente: ",nome_utente);
    Print("Input:", numero_utente);
 
+// 4.
    bool mercato_aperto = true;
+
+// 5.
    Print("Mercato aperto: ",mercato_aperto);
 
 // Stampo la variabile globale "numero"

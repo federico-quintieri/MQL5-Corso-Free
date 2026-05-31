@@ -1,5 +1,5 @@
 ﻿//+------------------------------------------------------------------+
-//|                                               1.3. Esercizio.mq5 |
+//|                                               2.7. Esercizio.mq5 |
 //|                                  Copyright 2026, MetaQuotes Ltd. |
 //|                                             https://www.mql5.com |
 //+------------------------------------------------------------------+
@@ -7,57 +7,31 @@
 #property link      "https://www.mql5.com"
 #property version   "1.00"
 
-// + - * / %
-// > < >= <= ==
-// && || !
+class Trailing
+  {
+private:
+   // Che dati conterrà la classe
+   double            distanza_prezzo;
 
-input bool variabile_test = false;
+public:
+   // Che azioni farà la classe
+   void              TrailingATR()
+     {
+      // Logica atr
+     };
 
+  };
 
-// 1.
-int numero1 = 10;
-int numero2 = 5;
+Trailing oggetto_classe;
+
+#include <Trade\Trade.mqh>
+CTrade trade;
 
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
 int OnInit()
   {
-// 2. e 3.
-
-// Somma
-   Print("Somma: ", numero1+numero2);
-
-// Sottrazione
-   Print("Sottrazione: ", numero1-numero2);
-
-// Moltiplicazione
-   Print("Moltiplicazione: ", numero1*numero2);
-
-// Divisione
-   Print("Divisione: ", numero1/numero2);
-
-// Resto della divisione
-   Print("Resto: ", numero1%numero2);
-
-// 4.
-   if(numero1 > numero2)
-     {
-      Print("Numero1 è maggiore a numero2");
-     }
-
-// 5.
-   if(numero1 > numero2 && variabile_test == true)
-     {
-      Print("Condizione verificata");
-     }
-   else
-     {
-      Print("Condizione falsa");
-     }
-
-   if(variabile_test == false || variabile_test == true)
-      Print("La variabile di input è falsa");
 
    return(INIT_SUCCEEDED);
   }
