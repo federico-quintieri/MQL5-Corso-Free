@@ -15,10 +15,31 @@ int mio_array[50];
 //+------------------------------------------------------------------+
 int OnInit()
   {
-//---
+
+// 1.
+   mio_array[0] = 10;
+   mio_array[1] = 20;
+   mio_array[2] = 30;
+   mio_array[3] = 40;
+   mio_array[4] = 50;
+
+// 2.
+   Print("Elemento 1: ", mio_array[0]);
+   Print("Elemento 3: ", mio_array[2]);
+   Print("Elemento 5: ", mio_array[4]);
+
+// 3.
+   for(int i = 0; i<5; i++)
+     {
+      Print("Elemento indice: ", i, " - ", mio_array[i]);
+     }
+
    Print("Cosa c'è al primo posto del mio array: ", mio_array[0]);
-   Print("Quanto è grande il mio array: ", ArraySize(mio_array));
-//---
+
+// 4.
+   Print("Dimensione array: ", ArraySize(mio_array));
+
+
    return(INIT_SUCCEEDED);
   }
 //+------------------------------------------------------------------+

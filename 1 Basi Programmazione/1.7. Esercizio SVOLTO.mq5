@@ -11,7 +11,14 @@
 //+------------------------------------------------------------------+
 int OnInit()
   {
-   double somma = Nome_Funzione(4,3);
+
+// 4.
+   double somma = SommaFunzione(4,3);
+   double moltiplicazione = MoltiplicaNumeri(7,7);
+
+   Print("Somma: ",somma);
+   Print("Moltiplicazione: ",moltiplicazione);
+
    return(INIT_SUCCEEDED);
   }
 //+------------------------------------------------------------------+
@@ -29,12 +36,20 @@ void OnTick()
 //+------------------------------------------------------------------+
 //|                                                                  |
 //+------------------------------------------------------------------+
-double Nome_Funzione(double a, double b)
-  {
-   Print("Ciao");
-   Print("Hello");
-   Print("cc");
 
+// 1.
+double SommaFunzione(double a, double b)
+  {
+// 2.
+   Print("Sto sommando: a + b");
    return a + b;
+  }
+//+------------------------------------------------------------------+
+
+// 3.
+double MoltiplicaNumeri(double a, double b)
+  {
+   Print("Sto moltiplando: a * b");
+   return a * b;
   }
 //+------------------------------------------------------------------+
