@@ -20,13 +20,20 @@ int OnInit()
 // Setto Magic Number dell'ea
    trade.SetExpertMagicNumber(MagicNumber);
 
+// 1.
+   Comment("=== ORDERS EA AVVIATO ==="+ "\n Simbolo: ", _Symbol, "\n ", "Magic Number: ", MagicNumber);
+
    double ask = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
 
-// Invio Buystop
-   trade.BuyStop(0.1,ask + 100 * _Point, _Symbol,NULL,NULL,ORDER_TIME_DAY,0,"Apro ordine buystop figo da ea");
+// 2. BUY STOP | Ask: X | Entry: Y | Distanza: Z punti
+   double livello_entrata = NormalizeDouble(ask + 100*_Point,_Digits);
+
+   Print("BUY STOP | Ask: ",ask, " | Entry: ", livello_entrata, " | Distanza: ", livello_entrata - ask, " punti");
+   trade.BuyStop(0.1,livello_entrata, _Symbol,NULL,NULL,ORDER_TIME_DAY,0,"Apro ordine buystop figo da ea");
 
    SelezionoOrdineAttivo();
    SelezionoOrdinePassato();
+
    return(INIT_SUCCEEDED);
   }
 //+------------------------------------------------------------------+
@@ -78,7 +85,9 @@ void SelezionoOrdineAttivo()
          initial_volume=OrderGetDouble(ORDER_VOLUME_INITIAL);
          type          =EnumToString(ENUM_ORDER_TYPE(OrderGetInteger(ORDER_TYPE)));
 
-         if(order_magic == MagicNumber)
+         // 3.
+         Print("Ordine trovato | Ticket: ",ticket," | Tipo: ",type);
+         if(order_magic == MagicNumber && symbol == _Symbol)
            {
             //--- prepara e mostra le informazioni sull'ordine
             printf("il #ticket %d %s %G %s at %G è stato impostato a %s, magic number: %d",
@@ -95,6 +104,10 @@ void SelezionoOrdineAttivo()
             // trade.OrderDelete(ticket);
 
             double max = iHigh(_Symbol,PERIOD_CURRENT,iHighest(_Symbol,PERIOD_CURRENT,MODE_HIGH,10,0));
+            
+            // 4.
+            Print("Modifica ordine | Ticket: ",ticket," | Nuovo prezzo: ",max);
+            
             // Modificho ordine
             trade.OrderModify(ticket,max,NULL,NULL,ORDER_TIME_DAY,0);
            }

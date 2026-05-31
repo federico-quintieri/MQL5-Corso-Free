@@ -82,10 +82,16 @@ void SelezionePosizioni()
          // Chiudo Posizione
          //trade.PositionClose(ticket);
 
-         double StopLoss = bid - 300 * _Point;
-         double TakeProfit = bid + 600 * _Point;
-         // Modifico Posizione
-         trade.PositionModify(ticket,StopLoss,TakeProfit);
+         // 1.
+         double StopLoss = NormalizeDouble(position_price - 300 * _Point, _Digits);
+         double TakeProfit = NormalizeDouble(position_price + 600 * _Point,_Digits);
+
+         // 2.
+         if(position_profit < 0 && position_open_time + 3600 < TimeCurrent())
+           {
+            // Modifico Posizione
+            trade.PositionModify(ticket,StopLoss,TakeProfit);
+           }
         }
      }
   }

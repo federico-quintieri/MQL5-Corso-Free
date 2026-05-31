@@ -20,6 +20,7 @@ input bool   Chiudi      = false;
 double ask;
 double bid;
 
+int win = 0, loss = 0, break_even = 0;
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
@@ -27,7 +28,7 @@ int OnInit()
   {
 // Imposta il Magic Number dell'Expert Advisor
    trade.SetExpertMagicNumber(MagicNumber);
-   
+
 
 // Ottiene ASK e BID correnti
    ask = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
@@ -109,11 +110,31 @@ void SelezionoDeals()
       deal_entry =(ENUM_DEAL_ENTRY)HistoryDealGetInteger(deal_ticket,DEAL_ENTRY);
       deal_price = HistoryDealGetDouble(deal_ticket,DEAL_PRICE);
 
+      // 1.
+
       // Filtra solo i deal del nostro EA
-      if(deal_magic == MagicNumber)
+      if(deal_magic == MagicNumber && symbol == _Symbol)
         {
          if(deal_entry == DEAL_ENTRY_OUT)
            {
+
+            // 2. e 3.
+            if(deal_profit > 0)
+              {
+               Print("Deal in profitto");
+               win++;
+              }
+            else
+               if(deal_profit < 0)
+                 {
+                  Print("Deal in perdita");
+                  loss++;
+                 }
+               else
+                 {
+                  Print("Deal in paro");
+                  break_even++;
+                 }
             PrintFormat(
                "DEAL | Ticket: %d | Symbol: %s | Profit: %.2f | Volume: %.2f",
                deal_ticket,
@@ -121,6 +142,7 @@ void SelezionoDeals()
                deal_profit,
                volume
             );
+
            }
          if(deal_entry == DEAL_ENTRY_IN)
            {
@@ -134,6 +156,7 @@ void SelezionoDeals()
            }
         }
      }
+     Print("Deal in profitto: ", win, " | Deal in perdita: ", loss, " Deal in paro: ", break_even);
   }
 //+------------------------------------------------------------------+
 //+------------------------------------------------------------------+

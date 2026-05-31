@@ -8,6 +8,7 @@
 #property version   "1.00"
 
 double Close[];
+double somma_close = 0;
 
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
@@ -19,6 +20,27 @@ int OnInit()
 
    ArrayPrint(Close);
 
+// 1.
+   Print("Close attuale: ", Close[0], " - Chiusura precedente: ",Close[1], " - Chiusura candela indice 2: ", Close[2]);
+
+// 2.
+   for(int i = 0; i < ArraySize(Close); i++)
+     {
+      Print("Indice : ",i," | Prezzo chiusura candela: ", Close[i]);
+
+      // 3.
+      if(Close[i] > Close[i+1])
+         Print("Salita rilevata");
+      else
+         if(Close[i] < Close[i+1])
+            Print("Discesa rilevata");
+
+      // 4.
+      somma_close += Close[i];
+     }
+
+   Print("Media 5 chiusure precedenti: ", somma_close / 5);
+   
    return(INIT_SUCCEEDED);
   }
 //+------------------------------------------------------------------+
@@ -26,7 +48,6 @@ int OnInit()
 //+------------------------------------------------------------------+
 void OnDeinit(const int reason)
   {
-//---
 
   }
 //+------------------------------------------------------------------+
@@ -34,7 +55,7 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
-//---
 
   }
+//+------------------------------------------------------------------+
 //+------------------------------------------------------------------+

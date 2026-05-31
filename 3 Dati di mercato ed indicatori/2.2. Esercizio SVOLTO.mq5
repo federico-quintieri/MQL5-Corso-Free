@@ -26,6 +26,12 @@ int OnInit()
 
    ChartIndicatorAdd(ChartID(),1,handle);
 
+// 4.
+   if(handle == INVALID_HANDLE)
+     {
+      Print("Errore inizializzazione macd");
+      return INIT_FAILED;
+     }
    return(INIT_SUCCEEDED);
   }
 //+------------------------------------------------------------------+
@@ -46,6 +52,25 @@ void OnTick()
   {
 
    int copiati = CopyBuffer(handle,0,0,5,istogramma);
+// 1.
+   Print("Valori copiati ", copiati);
+   if(copiati <= 0)
+     {
+      Print("Errori nel copiare i dati del macd");
+      return;
+     }
 
+// 2.
+   for(int i = 0; i < ArraySize(istogramma); i++)
+     {
+      Print("Ad indice: ", i, " | Istogramma MACD vale: ", istogramma[i]);
+     }
+
+// 3.
+   if(istogramma[0] > 0)
+      Print("Macd rialzista");
+   else
+      if(istogramma[0] < 0)
+         Print("Macd ribassista");
   }
 //+------------------------------------------------------------------+
