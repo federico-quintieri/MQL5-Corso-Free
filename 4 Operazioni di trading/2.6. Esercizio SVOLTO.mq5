@@ -15,7 +15,7 @@ input int MagicNumber = 421;
 input double Lotti = 0.1;
 
 double ask = 0,bid = 0;
-
+int cont = 0;
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
@@ -25,9 +25,6 @@ int OnInit()
 
    ask = SymbolInfoDouble(_Symbol,SYMBOL_ASK);
    bid = SymbolInfoDouble(_Symbol,SYMBOL_BID);
-
-   trade.Buy(Lotti,_Symbol,ask,NULL,NULL,"Apro BUY");
-
 
    return(INIT_SUCCEEDED);
   }
@@ -43,6 +40,12 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
+   if(cont == 0)
+     {
+      trade.Buy(Lotti,_Symbol,ask,NULL,NULL,"Apro BUY");
+      cont++;
+     }
+
    SelezionePosizioni();
   }
 //+------------------------------------------------------------------+
@@ -86,9 +89,15 @@ void SelezionePosizioni()
          double StopLoss = NormalizeDouble(position_price - 300 * _Point, _Digits);
          double TakeProfit = NormalizeDouble(position_price + 600 * _Point,_Digits);
 
+         PrintFormat("Apertura=%s | Attuale=%s | Diff=%d",
+                     TimeToString(position_open_time, TIME_DATE|TIME_SECONDS),
+                     TimeToString(TimeCurrent(), TIME_DATE|TIME_SECONDS),
+                     (int)(TimeCurrent() - position_open_time));
+
          // 2.
          if(position_profit < 0 && position_open_time + 3600 < TimeCurrent())
            {
+            Comment("Ho modificato la posizione");
             // Modifico Posizione
             trade.PositionModify(ticket,StopLoss,TakeProfit);
            }

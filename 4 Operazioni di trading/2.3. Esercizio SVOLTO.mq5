@@ -9,10 +9,8 @@
 
 // Ordine - Deal - Posizione
 
-// 1. Importare una libreria
 #include <Trade\Trade.mqh>
 
-// 2. Variabile oggetto che mi permette di utilizzare funzioni della libreria
 CTrade trade;
 
 input int MagicNumber = 321;
@@ -24,7 +22,6 @@ int BarsCount = 0;
 //+------------------------------------------------------------------+
 int OnInit()
   {
-// 3. Setto il magic number
    trade.SetExpertMagicNumber(MagicNumber);
 
 

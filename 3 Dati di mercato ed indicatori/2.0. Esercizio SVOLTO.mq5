@@ -28,19 +28,21 @@ int OnInit()
      {
       Print("Indice : ",i," | Prezzo chiusura candela: ", Close[i]);
 
-      // 3.
-      if(Close[i] > Close[i+1])
-         Print("Salita rilevata");
-      else
-         if(Close[i] < Close[i+1])
-            Print("Discesa rilevata");
-
+      if(i!=4)
+        {
+         // 3.
+         if(Close[i] > Close[i+1])
+            Print("Salita rilevata");
+         else
+            if(Close[i] < Close[i+1])
+               Print("Discesa rilevata");
+        }
       // 4.
       somma_close += Close[i];
      }
 
    Print("Media 5 chiusure precedenti: ", somma_close / 5);
-   
+
    return(INIT_SUCCEEDED);
   }
 //+------------------------------------------------------------------+
